@@ -87,3 +87,9 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Secrect json
+
+nfacturacion/secrets.json
+
+!__init__.py
