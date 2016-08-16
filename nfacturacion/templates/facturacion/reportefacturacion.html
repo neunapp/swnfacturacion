@@ -1,0 +1,64 @@
+{% extends "home/base_home.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+
+<form method="get">
+  <div class="row">
+    <div class="medium-6 columns">
+      <label>Fecha Inicio :
+        {{ form.date_start}}
+      </label>
+    </div>
+    <div class="medium-6 columns">
+      <label>Fecha Fin:
+        {{ form.date_end }}
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="medium-6 columns">
+      <label>Serie - Numero :
+        {{ form.search}}
+      </label>
+    </div>
+    <div class="medium-6 columns">
+        <button type="submit" class="button">Buscar</button>
+    </div>
+  </div>
+
+  <h3>Lista de Facturas</h3>
+
+  <table>
+  <thead>
+    <tr>
+      <th>Nro</th>
+      <th>Serie - Numero</th>
+      <th>RUC</th>
+      <th>Fecha</th>
+      <th>Monto</th>
+      <th>estado</th>
+      <th>accion</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for invoice in lista_de_factura %}
+        <tr>
+          <td>{{invoice.pk}}</td>
+          <td>{{invoice.invoice}}</td>
+          <td>{{invoice.invoice.provider.razon_social}}</td>
+          <td>{{invoice.invoice.date}}</td>
+          <td>{{invoice.invoice.amount}}</td>
+          <td>{{invoice.invoice.anulate}}</td>
+          <td><a class="alert button" href="#">X</a></td>
+        </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+
+</form>
+
+{% endblock %}

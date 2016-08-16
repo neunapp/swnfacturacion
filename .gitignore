@@ -92,4 +92,6 @@ ENV/
 
 nfacturacion/secrets.json
 
+nfacturacion/applications/facturacion/migrations/*
+
 !__init__.py
