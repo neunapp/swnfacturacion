@@ -1,12 +1,90 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-  <h1>HOLA MUNDO.....!!</h1>
-  {{ form.as_table }}
+{% extends "home/base_home.html" %}
 
-  </body>
-</html>
+{% block title %}Index{% endblock %}
+
+{% block content %}
+
+
+<form method="post">
+  {% csrf_token %}
+  <div class="row">
+    <div class="medium-3 columns large-offset-6">
+      <label>Serie :
+        {{form.serie}}
+      </label>
+    </div>
+    <div class="medium-3 columns">
+      <label>Numero :
+        {{form.numero}}
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="medium-5 columns">
+      <label>RUC :
+        {{ form2.ruc}}
+      </label>
+    </div>
+    <div class="medium-3 columns">
+      <label>FECHA:
+        {{ form.date }}
+      </label>
+    </div>
+  </div>
+
+
+<div class="row">
+  <div class="medium-6 columns">
+    <label>RAZOL SOCIAL :
+      {{ form2.razon_social }}
+    </label>
+  </div>
+  <div class="medium-6 columns">
+    <label>DIRECCION :
+      {{ form2.address }}
+    </label>
+  </div>
+</div>
+
+<div class="row">
+  <div class="medium-10 columns">
+    <label>
+      Ingresa los Detalles
+      {{ form3.service }}
+    </label>
+  </div>
+  <div class="medium-2 columns">
+    <label>
+      Monto
+      <input type="text" placeholder="monto">
+    </label>
+  </div>
+</div>
+
+<div class="row">
+    <div class="medium-2 columns">
+      <label>
+        Sub total S/.
+        <input type="text" placeholder="monto">
+      </label>
+    </div>
+    <div class="medium-2 columns">
+      <label>
+        I.G.V. S/.
+        <input type="text" placeholder="monto">
+      </label>
+    </div>
+    <div class="medium-2 columns">
+      <label>
+        MONTO TOTAL S/.
+        {{ form.amount }}
+      </label>
+    </div>
+    <div class="medium-2 columns">
+      <button type="submit" class="success button">Guardar</button>
+    </div>
+</div>
+
+</form>
+{% endblock %}

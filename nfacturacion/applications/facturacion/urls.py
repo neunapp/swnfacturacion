@@ -9,6 +9,7 @@ urlpatterns = [
     #url(r'^$', ProviderView.as_view()),
     #url(r'^$', ProviderCreateView.as_view()),
     #url(r'^$', FacturacionLista.as_view(), name='facturacion_listar'),
+
     url(
         r'^provider/$',
         FacturacionCreate.as_view(),
@@ -17,5 +18,9 @@ urlpatterns = [
     url(r'^report/$',
         views.ReportListView.as_view(),
         name='reporte'
+    ),
+    url(r'^invoice/(?P<pk>\d+)$',
+        views.FacturacionUpdateView.as_view(),
+        name='facturacion_update'
     ),
 ]
