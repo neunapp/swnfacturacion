@@ -6,6 +6,8 @@ from django.views.generic import TemplateView, DetailView, FormView, CreateView,
 from .models import Provider, Invoice, Invoice_Detail
 
 from .forms import InvoiceForm, ProviderForm, Invoice_DetailForm, ReportForm
+from .forms import InvoiceUpdateForm, ProviderUpdateForm, Invoice_DetailUpdateForm
+
 from decimal import Decimal
 
 from datetime import datetime, date, timedelta
@@ -73,10 +75,10 @@ class FacturacionUpdateView(UpdateView):
     second_model = Provider
     third_model = Invoice_Detail
     template_name = 'facturacion/index.html'
-    form_class = InvoiceForm
-    second_form_class = ProviderForm
-    third_form_class = Invoice_DetailForm
-    success_url = 'report/'
+    form_class = InvoiceUpdateForm
+    second_form_class = ProviderUpdateForm
+    third_form_class = Invoice_DetailUpdateForm
+    success_url = reverse_lazy('facturacion_app:reporte')
 
     def get_context_data(self, **kwargs):
         context = super(FacturacionUpdateView,self).get_context_data(**kwargs)
@@ -91,43 +93,26 @@ class FacturacionUpdateView(UpdateView):
             context['form2'] = self.second_form_class(instance=provider)
         if 'form3' not in context:
             context['form3'] = self.third_form_class(instance=invoice_detail)
-        context['id'] = pk
+
         return context
 
     def post(self, request, *args, **kwargs):
-        self.object = self.get_object
-        id_invoice = kwargs['pk']
-        print id_invoice
-        invoice = self.model.objects.get(id=id_invoice)
-        print 1
-        print invoice
-        provider = self.second_model.objects.get(id=invoice.provider.pk)
-        print 2
-        print provider
-        invoice_detail = self.third_model.objects.get(id=invoice.pk)
-        print 3
-        print invoice_detail
+        self.object = self.get_object()
+        id_invoice = self.object.pk
 
-        form2 = self.second_form_class(request.POST, instance = provider)
-        print 4
-        print form2
-        print form2.is_valid()
+        invoice = self.model.objects.get(id=id_invoice)
+        provider = self.second_model.objects.get(id=invoice.provider.pk)
+        invoice_detail = self.third_model.objects.get(id=invoice.pk)
+
         form = self.form_class(request.POST, instance = invoice)
-        print 5
-        print form
-        print form.is_valid()
-        print 6
+        form2 = self.second_form_class(request.POST, instance = provider)
         form3 = self.third_form_class(request.POST, instance = invoice_detail)
-        print 7
-        print form3
-        print form3.is_valid()
 
         if form.is_valid() and form2.is_valid() and form3.is_valid():
-            print 'hola'
+            print '=========2========='
             form2.save()
             form.save()
             form3.save()
             return HttpResponseRedirect(self.get_success_url())
         else:
-            print 'hola 2'
-            return HttpResponseRedirect(self.get_success_url())
+            return self.render_to_response(self.get_context_data(form=form, form2=form2, form3=form3))

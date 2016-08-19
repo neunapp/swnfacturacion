@@ -8,16 +8,16 @@
 <form method="post">
   {% csrf_token %}
   <div class="row">
-    <div class="medium-3 columns large-offset-6">
-      <label>Serie :
-        {{form.serie}}
+    <div class="medium-3 large-offset-6 columns">
+      <label>Serie:
+        <input type="text" name="name" value="{{object.serie}}" disabled="true">
       </label>
     </div>
-    <div class="medium-3 columns">
-      <label>Numero :
-        {{form.numero}}
-      </label>
-    </div>
+      <div class="medium-3 columns">
+        <label>Numero:
+          <input type="text" name="name" value="{{object.numero}}" disabled="true">
+        </label>
+      </div>
   </div>
 
   <div class="row">
@@ -25,11 +25,18 @@
       <label>RUC :
         {{ form2.ruc}}
       </label>
+      {% for error in form2.ruc.errors %}
+        <div class="col-xs-12">
+          <p class="help-text error-field">
+              {{ error|escape }}
+          </p>
+        </div>
+      {% endfor %}
     </div>
     <div class="medium-3 columns">
       <label>FECHA:
-        {{ form.date }}
-      </label>
+        <input type="text" name="name" value="{{object.date}}" disabled="true">
+
     </div>
   </div>
 
@@ -39,11 +46,25 @@
     <label>RAZOL SOCIAL :
       {{ form2.razon_social }}
     </label>
+    {% for error in form2.razon_social.errors %}
+      <div class="col-xs-12">
+        <p class="help-text error-field">
+            {{ error|escape }}
+        </p>
+      </div>
+    {% endfor %}
   </div>
   <div class="medium-6 columns">
     <label>DIRECCION :
       {{ form2.address }}
     </label>
+    {% for error in form2.address.errors %}
+      <div class="col-xs-12">
+        <p class="help-text error-field">
+            {{ error|escape }}
+        </p>
+      </div>
+    {% endfor %}
   </div>
 </div>
 
@@ -53,36 +74,50 @@
       Ingresa los Detalles
       {{ form3.service }}
     </label>
+    {% for error in form3.service.errors %}
+      <div class="col-xs-12">
+        <p class="help-text error-field">
+            {{ error|escape }}
+        </p>
+      </div>
+    {% endfor %}
   </div>
   <div class="medium-2 columns">
     <label>
       Monto
-      <input type="text" placeholder="monto">
+      {{ form.amount }}
     </label>
+    {% for error in form.amount.errors %}
+      <div class="col-xs-12">
+        <p class="help-text error-field">
+            {{ error|escape }}
+        </p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="medium-10 columns">
+    <label>
+      Anular
+      {{ form.anulate }}
+    </label>
+    {% for error in form.anulate.errors %}
+      <div class="col-xs-12">
+        <p class="help-text error-field">
+            {{ error|escape }}
+        </p>
+      </div>
+    {% endfor %}
   </div>
 </div>
 
 <div class="row">
     <div class="medium-2 columns">
-      <label>
-        Sub total S/.
-        <input type="text" placeholder="monto">
-      </label>
-    </div>
-    <div class="medium-2 columns">
-      <label>
-        I.G.V. S/.
-        <input type="text" placeholder="monto">
-      </label>
-    </div>
-    <div class="medium-2 columns">
-      <label>
-        MONTO TOTAL S/.
-        {{ form.amount }}
-      </label>
-    </div>
-    <div class="medium-2 columns">
-      <button type="submit" class="success button">Guardar</button>
+      {% if object.anulate == False %}
+          <button type="submit" class="success button">Guardar</button>
+      {% endif %}
     </div>
 </div>
 

@@ -7,9 +7,7 @@
 
 <form method="post">
   {% csrf_token %}
-  {{form}}
-  {{form2}}
-  {{form3}}
+
   <div class="row">
     <div class="medium-3 columns large-offset-6">
       <label>Serie :
@@ -69,7 +67,7 @@
     <div class="medium-2 columns">
       <label>
         Sub total S/.
-        <input type="text" placeholder="monto">
+        {{ form2.amount }}
       </label>
     </div>
     <div class="medium-2 columns">
@@ -81,7 +79,7 @@
     <div class="medium-2 columns">
       <label>
         MONTO TOTAL S/.
-        {{ form2.amount }}
+        <input type="text" placeholder="monto">
       </label>
     </div>
     <div class="medium-2 columns">

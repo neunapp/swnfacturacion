@@ -40,12 +40,6 @@ class Invoice(models.Model):
     def __str__(self):
         return (self.serie+'-'+self.numero)
 
-#class Service(models.Model):
-
-#    name = models.TextField()
-
-#    def __str__(self):
-#        return (self.name)
 
 class Invoice_Detail(models.Model):
 
