@@ -8,11 +8,8 @@
 {% endblock css %}
 
 {% block js %}
-  <script src="{% static 'js/vendor/jquery.min.js' %}"></script>
-  <script src="{% static 'js/vendor/what-input.min.js' %}"></script>
-  <script src="{% static 'js/foundation.min.js' %}"></script>
-  <script>
-    $(document).foundation();
-  </script>
-  <script src="{% static 'js/init.js' %}"></script>
+  <script src="{% static 'js/vendor/jquery.js' %}"></script>
+  <script src="{% static 'js/vendor/what-input.js' %}"></script>
+  <script src="{% static 'js/vendor/foundation.min.js' %}"></script>
+  <script src="{% static 'js/app.js' %}"></script>
 {% endblock js %}
