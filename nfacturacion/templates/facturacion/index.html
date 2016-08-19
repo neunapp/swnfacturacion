@@ -84,8 +84,8 @@
   </div>
   <div class="medium-2 columns">
     <label>
-      Monto
-      {{ form.amount }}
+      Monto:
+      <input type="text" name="name" value="{{object.amount}}" disabled="true">
     </label>
     {% for error in form.amount.errors %}
       <div class="col-xs-12">

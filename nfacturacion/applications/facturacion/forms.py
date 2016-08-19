@@ -58,8 +58,8 @@ class Invoice_DetailForm(forms.ModelForm):
             'description': 'descripcion del servicio',
         }
         widgets={
-            'service': forms.TextInput(attrs={'class':'form-control'}),
-            'description': forms.TextInput(attrs={'class':'form-control'}),
+            'service': forms.Textarea(attrs={'class':'form-control'}),
+            'description': forms.Textarea(attrs={'class':'form-control'}),
         }
 
 class ReportForm(forms.Form):
@@ -118,6 +118,6 @@ class Invoice_DetailUpdateForm(forms.ModelForm):
             'description': 'descripcion del servicio',
         }
         widgets={
-            'service': forms.TextInput(attrs={'class':'form-control'}),
-            'description': forms.TextInput(attrs={'class':'form-control'}),
+            'service': forms.Textarea(attrs={'class':'form-control'}),
+            'description': forms.Textarea(attrs={'class':'form-control'}),
         }
