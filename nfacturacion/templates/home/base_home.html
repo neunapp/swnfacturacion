@@ -4,6 +4,7 @@
 
 {% block css %}
   <link rel="stylesheet" href="{% static 'css/foundation.css' %}"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation-datepicker/1.5.0/css/foundation-datepicker.min.css">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock css %}
 
@@ -11,5 +12,16 @@
   <script src="{% static 'js/vendor/jquery.js' %}"></script>
   <script src="{% static 'js/vendor/what-input.js' %}"></script>
   <script src="{% static 'js/vendor/foundation.min.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation-datepicker/1.5.0/js/foundation-datepicker.min.js"></script>
   <script src="{% static 'js/app.js' %}"></script>
+  <script type="text/javascript">
+
+    window.prettyPrint && prettyPrint();
+    $('#id_date').fdatepicker({
+      format: 'mm-dd-yyyy',
+      disableDblClickSelection: true
+    });
+
+
+  </script>
 {% endblock js %}

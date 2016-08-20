@@ -1,3 +1,7 @@
+.content-row {
+  min-height: 1200px;
+  margin-top: 2em;
+}
 
 .top-bar-cargo, .top-bar-cargo ul {
   background-color: #2980b9;
