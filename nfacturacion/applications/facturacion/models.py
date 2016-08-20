@@ -20,7 +20,7 @@ class Provider(models.Model):
         blank=True
     )
 
-    def __str__(self):
+    def __unicode__(self):
         return (self.ruc+'-'+self.razon_social)
 
 class Invoice(models.Model):
@@ -37,15 +37,9 @@ class Invoice(models.Model):
     igv = models.DecimalField(max_digits=10, decimal_places=3)
     anulate = models.BooleanField(default=False)
 
-    def __str__(self):
+    def __unicode__(self):
         return (self.serie+'-'+self.numero)
 
-#class Service(models.Model):
-
-#    name = models.TextField()
-
-#    def __str__(self):
-#        return (self.name)
 
 class Invoice_Detail(models.Model):
 
@@ -54,5 +48,5 @@ class Invoice_Detail(models.Model):
     service = models.TextField(blank=True)
     description = models.TextField(blank=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return (self.service)

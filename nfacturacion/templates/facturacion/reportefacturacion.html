@@ -46,13 +46,26 @@
   <tbody>
     {% for invoice in lista_de_factura %}
         <tr>
-          <td>{{invoice.pk}}</td>
+          <td>{{invoice.invoice.pk}}</td>
           <td>{{invoice.invoice}}</td>
           <td>{{invoice.invoice.provider.razon_social}}</td>
           <td>{{invoice.invoice.date}}</td>
           <td>{{invoice.invoice.amount}}</td>
-          <td>{{invoice.invoice.anulate}}</td>
-          <td><a class="alert button" href="#">X</a></td>
+          {% if invoice.invoice.anulate == False %}
+              <td><span class="success">ok</span></td>
+              <td>
+                <a href="  {% url 'facturacion_app:facturacion_update' invoice.invoice.pk %}" class="warning button" type="button">
+                  <span aria-hidden="true"><i class="fa fa-pencil-square-o "></i></span>
+                </a>
+              </td>
+          {% else %}
+              <td><span class="alert">Anulado</span></td>
+              <td>
+                <a href="{% url 'facturacion_app:facturacion_update' invoice.invoice.pk %}" class="secondary button" type="button">
+                  <span aria-hidden="true"><i class="fa fa-pencil-square-o"></i></span>
+                </a>
+              </td>
+          {% endif %}
         </tr>
     {% endfor %}
 

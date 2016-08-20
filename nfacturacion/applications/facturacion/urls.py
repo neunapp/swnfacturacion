@@ -11,7 +11,7 @@ urlpatterns = [
     #url(r'^$', FacturacionLista.as_view(), name='facturacion_listar'),
 
     url(
-        r'^provider/$',
+        r'^$',
         FacturacionCreate.as_view(),
         name='facturacion_create'
     ),
